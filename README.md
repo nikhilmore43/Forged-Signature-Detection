@@ -31,6 +31,6 @@ CEDAR Signature Dataset (University at Buffalo)
 1. Install dependencies
 2. Run `train_siamese.py` 
 3. Start app using `python app.py`
-4. In deployment phase reference image to be provided as an input should be original!
+4. In deployment phase, reference image as an input should be the original image !
 
 (.venv should be active while running)
