@@ -1,0 +1,201 @@
+* {
+    box-sizing: border-box;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    background: linear-gradient(135deg, #0f2027, #203a43);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.app-card {
+    width: 100%;
+    max-width: 380px;
+    background: #ffffff;
+    border-radius: 18px;
+    padding: 24px;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+}
+
+h1 {
+    font-size: 20px;
+    text-align: center;
+    margin-bottom: 4px;
+}
+
+.subtitle {
+    text-align: center;
+    font-size: 13px;
+    color: #666;
+    margin-bottom: 20px;
+}
+
+label {
+    font-size: 13px;
+    margin-bottom: 6px;
+    display: block;
+}
+
+input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    border-radius: 10px;
+    border: 1px solid #ddd;
+    margin-bottom: 14px;
+}
+
+.upload-card {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border: 1px solid #ddd;
+    padding: 12px;
+    border-radius: 12px;
+    margin-bottom: 8px;
+    background: #f8f8f8;
+}
+
+.upload-card span {
+    font-size: 13px;
+    color: #555;
+}
+
+.upload-card input {
+    display: none;
+}
+
+.upload-card button {
+    border: none;
+    background: #ffffff00;
+    color: white;
+    font-size: 16px;
+    padding: 8px 12px;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.preview-img {
+    display: none;
+    width: 100%;
+    max-height: 140px;
+    object-fit: contain;
+    border-radius: 10px;
+    margin-bottom: 12px;
+    background: #eee;
+}
+
+.verify-btn {
+    width: 100%;
+    padding: 14px;
+    background: #0a7a3c;
+    color: white;
+    border: none;
+    border-radius: 14px;
+    font-size: 15px;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+.result {
+    margin-top: 18px;
+    padding: 16px;
+    border-radius: 14px;
+    text-align: center;
+}
+
+.result.genuine {
+    background: #e6f6ed;
+    color: #0a7a3c;
+}
+
+.result.forged {
+    background: #fdeaea;
+    color: #a10000;
+}
+
+.status-icon {
+    font-size: 36px;
+}
+
+.confidence {
+    margin-top: 10px;
+}
+
+.bar {
+    height: 8px;
+    background: #ddd;
+    border-radius: 6px;
+}
+
+.fill {
+    height: 8px;
+    background: #0a7a3c;
+    border-radius: 6px;
+}
+
+#loading {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.6);
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: white;
+}
+
+.spinner {
+    width: 42px;
+    height: 42px;
+    border: 4px solid #ccc;
+    border-top-color: #0a7a3c;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin-bottom: 10px;
+}
+
+.identity-box {
+    background: rgba(0,0,0,0.05);
+    padding: 10px;
+    border-radius: 10px;
+    font-size: 13px;
+    margin-bottom: 12px;
+}
+
+.verified-images {
+    display: flex;
+    gap: 10px;
+    justify-content: space-between;
+    margin: 12px 0;
+}
+
+.verified-images div {
+    flex: 1;
+    text-align: center;
+}
+
+.verified-images p {
+    font-size: 12px;
+    margin-bottom: 6px;
+}
+
+.verified-images img {
+    width: 100%;
+    max-height: 100px;
+    object-fit: contain;
+    border-radius: 8px;
+    background: #f2f2f2;
+}
+
+.score-text {
+    font-size: 14px;
+    margin-top: 10px;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}

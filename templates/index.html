@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Signature Verification</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<div class="app-card">
+
+    <h1>Digital Signature Authentication</h1>
+    <p class="subtitle">AI-Powered Forgery Detection</p>
+
+    <form method="POST" enctype="multipart/form-data">
+
+        <!-- Identity -->
+        <label>Claimed Identity (Optional)</label>
+        <input type="text" name="identity" placeholder="User ID / Account No">
+
+        <!-- Reference -->
+        <label>Reference Signature</label>
+        <div class="upload-card">
+            <span>Select reference signature</span>
+            <input type="file"
+                   name="ref"
+                   id="refInput"
+                   accept="image/*"
+                   capture="environment"
+                   onchange="previewImage(this, 'previewRef')"
+                   required>
+            <button type="button" onclick="refInput.click()">📷</button>
+        </div>
+        <img id="previewRef" class="preview-img">
+
+        <!-- Test -->
+        <label>Test Signature</label>
+        <div class="upload-card">
+            <span>Select test signature</span>
+            <input type="file"
+                   name="test"
+                   id="testInput"
+                   accept="image/*"
+                   capture="environment"
+                   onchange="previewImage(this, 'previewTest')"
+                   required>
+            <button type="button" onclick="testInput.click()">📷</button>
+        </div>
+        <img id="previewTest" class="preview-img">
+
+        <button class="verify-btn" type="submit">Verify Signature</button>
+    </form>
+
+{% if result %}
+<div class="result {{ result.lower() }}">
+
+    <div class="status-icon">
+        {% if result == "GENUINE" %}✔{% else %}✖{% endif %}
+    </div>
+
+    <h2>{{ result }}</h2>
+
+    {% if identity %}
+    <div class="identity-box">
+        <strong>Claimed Identity:</strong><br>
+        {{ identity }}
+    </div>
+    {% endif %}
+
+    <div class="verified-images">
+        <div>
+            <p>Reference Signature</p>
+            <img src="{{ url_for('static', filename=ref_img) }}" alt="Reference Signature">
+        </div>
+
+        <div>
+            <p>Test Signature</p>
+            <img src="{{ url_for('static', filename=test_img) }}" alt="Test Signature">
+        </div>
+    </div>
+
+    <p class="score-text">
+        Similarity Score: {{ score }}
+    </p>
+
+    <div class="confidence">
+        <div class="bar">
+            <div class="fill" style="width: {{ (score*100)|round(2) }}%"></div>
+        </div>
+        <span>{{ (score*100)|round(2) }}%</span>
+    </div>
+
+</div>
+{% endif %}
+
+<!-- Loader -->
+<div id="loading">
+    <div class="spinner"></div>
+    <p>Verifying…</p>
+</div>
+
+<script>
+function previewImage(input, id) {
+    const file = input.files[0];
+    if (!file) return;
+    const reader = new FileReader();
+    reader.onload = e => {
+        const img = document.getElementById(id);
+        img.src = e.target.result;
+        img.style.display = "block";
+    };
+    reader.readAsDataURL(file);
+}
+
+document.querySelector("form").addEventListener("submit", () => {
+    document.getElementById("loading").style.display = "flex";
+});
+</script>
+
+</body>
+</html>
